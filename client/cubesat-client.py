@@ -13,7 +13,7 @@ def sendPayload(conn):
 	genericPayload2 = random.randint(0,100)
 	message = '{"BATT":'+str(battery)+', "DATA1":'+str(genericPayload1)+', "DATA2":'+str(genericPayload2)+'}'
 	print('Sending:'+message)
-	s.sendall(message)
+	conn.sendall(message)
 
 def main():
 	HOST = '192.168.100.4'
