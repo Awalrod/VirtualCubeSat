@@ -12,7 +12,7 @@ class PayloadTimer(object):
 	def _run(self):
 		self.is_running = False
 		self.start()
-		self.function(conn)
+		self.function(self.conn)
 
 	def start(self):
 		if not self.is_running:
