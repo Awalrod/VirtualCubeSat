@@ -1,10 +1,13 @@
 #!/usr/bin/python3
-
+import sys
 import socket
 import random
 import math
 import time
 from PayloadTimer import PayloadTimer as pt
+
+
+s = None
 
 def sendPayload(conn):
 	currentTime = time.time()
@@ -16,19 +19,14 @@ def sendPayload(conn):
 	conn.sendall(str.encode(message))
 
 def main():
-	HOST = '192.168.100.4'
-	PORT = 55555
+	HOST = sys.argv[1]
+	PORT = int(sys.argv[2])
 
-
-	with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-		s.connect((HOST, PORT))
-		#s.sendall(b'Hello, world')
-		#data = s.recv(1024)
-		payloadTimer = pt(5,sendPayload,s)
-		while True:
-			print("10 seconds")
-			time.sleep(10)
-
+	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	s.connect((HOST, PORT))
+	#s.sendall(b'Hello, world')
+	#data = s.recv(1024)
+	payloadTimer = pt(2,sendPayload,s)
 	
 
 
