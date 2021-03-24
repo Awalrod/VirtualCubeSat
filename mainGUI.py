@@ -2,8 +2,8 @@ import PySimpleGUI as sg
 import os
 import server.pythonserver as pyServ
 import sys
-
-
+from reedsolo import RSCodec, ReedSolomonError
+rsc = RSCodec(32) 
 
 sg.ChangeLookAndFeel('LightGreen')
 
@@ -37,7 +37,8 @@ layout = [
 
 #callback function for server
 def incoming_data(data):
-	print(data)
+	decodedMsg = rsc.decode(data)[0]
+	print(bytearray.decode(decodedMsg))
 
 # Create the window
 window = sg.Window('GROUND STATION', layout,element_justification='r')
