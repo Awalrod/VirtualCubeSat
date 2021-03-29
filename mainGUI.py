@@ -19,9 +19,7 @@ column2 = [
                 [sg.Text('')],
                 [sg.Text('_'*20)],
                 [sg.Text('')],
-                [sg.Button('SEND PULSE')],
                 [sg.Text('')],
-                [sg.Button('STOP PULSE', button_color = 'red')],
                 [sg.Text('')],
                 [sg.Text('')],
             ]
