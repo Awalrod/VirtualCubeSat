@@ -5,8 +5,9 @@ import random
 import math
 import time
 from PayloadTimer import PayloadTimer as pt
+from reedsolo import RSCodec, ReedSolomonError
 
-
+rsc = RSCodec(32) 
 s = None
 
 def sendPayload(conn):
@@ -16,7 +17,8 @@ def sendPayload(conn):
 	genericPayload2 = random.randint(0,100)
 	message = '{"BATT":'+str(battery)+', "DATA1":'+str(genericPayload1)+', "DATA2":'+str(genericPayload2)+'}'
 	print('Sending:'+message)
-	conn.sendall(str.encode(message))
+	encodedMsg = rsc.encode(str.encode(message))
+	conn.sendall(encodedMsg)
 
 def main():
 	HOST = sys.argv[1]
